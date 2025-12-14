@@ -1,10 +1,12 @@
-# Assigned Teams
+# Assigned Teams TDM
 
 UnrealTournament package containing derived games types for CTFGame and TeamGamePlus for controlling players team assignments by game password.
 
-Version: 0.2-beta<br>
+Version: 0.3-beta<br>
 Author: Orel Eraki<br>
 Email: orel.eraki@gmail.com<br>
+
+Edit: rX (Adding NewTDM)<br>
 
 ## How does it works ?
 `GamePassword` is set with a delimiter(`;`) format. When a player joins, it will iterate through the different tokens and remember the current iteration position.<br>
@@ -64,7 +66,7 @@ bNoTeamChanges=True
 StrategyAssignment=0000011111
 ```
 
-`StrategyAssignment`
+For TDM 4v4, set StrategyAssignment="00001111"
 
 ## Game Types
 All game types are overriding the original. thus containing the same functionality.
@@ -73,7 +75,9 @@ All game types are overriding the original. thus containing the same functionali
 | -----------                   | -----------   | -----------
 | AssignedTeamsCTFGame          | CTFGame       | Botpack (BuiltIn)
 | AssignedTeamsTeamGamePlus     | TeamGamePlus  | Botpack (BuiltIn)
-| AssignedTeamsNewCTF           | NewCTF        | [NewCTF v17](https://github.com/Deaod/NewCTF/releases/tag/v17)
+| AssignedTeamsNewCTF           | NewCTF        | [NewCTF v19](https://github.com/Deaod/NewCTF/releases/tag/v19)
+| AssignedTeamsNewTDM           | NewTDM        | [InstaGibPlus] (https://github.com/Deaod/InstaGibPlus)
+
 
 ## Examples
 
