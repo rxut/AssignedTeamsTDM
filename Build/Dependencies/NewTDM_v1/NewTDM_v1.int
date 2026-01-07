@@ -1,0 +1,7 @@
+[Public]
+Object=(Name=NewTDM_v1.NewTDM,Class=Class,MetaClass=Engine.GameInfo)
+Preferences=(Caption="NewTDM",Parent="Game Types",Class=NewTDM_v1.NewTDM,Immediate=True)
+
+[NewTDM]
+GameName="New Tournament Team Game"
+

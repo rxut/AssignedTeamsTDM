@@ -67,21 +67,42 @@ function bool IsCandidateForTeamAssignment(String gamePassword, String inPasswor
     return inPassword != "" && InStr(gamePassword, ";") > 0;
 }
 
+// FIXED: Robustly replaces or adds Team parameter without corrupting options
 function String ReplaceTeamValueInOptions(String options, int teamIndex)
 {
     local int teamOptionPos, teamOptionPosEnd;
+    local string NewOption;
+    local string SearchStr;
 
-    if (InStr(options, "?Team=") > 0)
+    NewOption = "?Team=" $ teamIndex;
+    SearchStr = "?Team=";
+    
+    // Case insensitive search
+    teamOptionPos = InStr(Caps(options), Caps(SearchStr));
+    
+    if (teamOptionPos >= 0)
     {
-        teamOptionPos = InStr(options, "?Team=");
+        // Found existing Team option. Find where it ends (next '?' or end of string)
+        teamOptionPosEnd = InStr(Mid(options, teamOptionPos + 1), "?");
+        
+        if (teamOptionPosEnd == -1)
+        {
+            // It is the last option
+            options = Left(options, teamOptionPos) $ NewOption;
+        }
+        else
+        {
+            // There are other options after it.
+            // Mid(..., teamOptionPos + 1 + teamOptionPosEnd) skips the current value but keeps the next '?'
+            options = Left(options, teamOptionPos) $ NewOption $ Mid(options, teamOptionPos + 1 + teamOptionPosEnd);
+        }
     }
     else
     {
-        teamOptionPos = InStr(options, "?team=");
+        // Not found, simply append it
+        options = options $ NewOption;
     }
-	teamOptionPosEnd = InStr(Mid(options, teamOptionPos+1), ";");
-	
-	options = Left(options, teamOptionPos)$"?Team="$teamIndex$Mid(options, teamOptionPos+teamOptionPosEnd+1);
+
     return options;
 }
 

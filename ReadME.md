@@ -76,7 +76,7 @@ All game types are overriding the original. thus containing the same functionali
 | AssignedTeamsCTFGame          | CTFGame       | Botpack (BuiltIn)
 | AssignedTeamsTeamGamePlus     | TeamGamePlus  | Botpack (BuiltIn)
 | AssignedTeamsNewCTF           | NewCTF        | [NewCTF v19](https://github.com/Deaod/NewCTF/releases/tag/v19)
-| AssignedTeamsNewTDM           | NewTDM        | [InstaGibPlus] (https://github.com/Deaod/InstaGibPlus)
+| AssignedTeamsNewTDM           | NewTDM        | [NewTDM_v1] (https://github.com/rxut/NewTDM)
 
 
 ## Examples

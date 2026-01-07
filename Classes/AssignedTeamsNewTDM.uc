@@ -56,6 +56,11 @@ function PlayerPawn Login
 )
 {
 	local AssignedTeamsPlayerInfo playerInfo;
+	local PlayerPawn NewPlayer;
+	local string InPassword;
+
+	// FIX: Capture password early to ensure it persists
+	InPassword = ParseOption(Options, "Password");
 
 	if (Config.bEnabled)
 	{
@@ -79,7 +84,16 @@ function PlayerPawn Login
 		}
 	}
 
-	return Super.Login(Portal, Options, Error, SpawnClass);
+	NewPlayer = Super.Login(Portal, Options, Error, SpawnClass);
+
+	// FIX: Explicitly set the password on the player pawn if we know it.
+	// This fixes issues where players reconnecting might get stale or wrong passwords.
+	if (NewPlayer != None && InPassword != "")
+	{
+		NewPlayer.Password = InPassword;
+	}
+
+	return NewPlayer;
 }
 
 function bool ChangeTeam(Pawn Other, int N)
